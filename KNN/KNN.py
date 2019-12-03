@@ -7,11 +7,11 @@
 训练集数量：60000
 测试集数量：10000 (实际使用100，否则运行时间会很长Orz)
 ------------------------------
-运行结果：（邻近k数量：25）
-向量距离使用算法——欧式距离
+运行结果：（k_neighbor：25）
+向量距离度量值——欧式距离
     正确率：83%
     运行时长：344.58s
-向量距离使用算法——曼哈顿距离
+向量距离度量值——曼哈顿距离
     正确率：56%
     运行时长：134.85s
 '''
@@ -73,8 +73,8 @@ class KNN:
 if __name__ == '__main__':
     (train_data, train_label), (test_data, test_label) = mnist.load_data()
     train_data = np.array([list(chain(*i)) for i in train_data]) #将28*28维矩阵转换为1*784的向量
-    test_data = np.array([list(chain(*i)) for i in test_data[:10]]) #对测试集进行切片，选取前100组数据。
-    test_label = test_label[:10]
+    test_data = np.array([list(chain(*i)) for i in test_data[:100]]) #对测试集进行切片，选取前100组数据。
+    test_label = test_label[:100]
     knn = KNN(k_neighbor=25, p=2) #设置KNN参数，p=2表示使用欧式距离进行度量。
     start = time.time()
     print("K近邻预测准确率：%.2f%%" % (knn.score(train_data, train_label, test_data, test_label) * 100))
