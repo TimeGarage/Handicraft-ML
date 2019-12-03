@@ -1,6 +1,6 @@
 #coding:utf-8
 #Author:Dustin
-#Algorithm:单层感知机
+#Algorithm:单层感知机(二分类)
 
 '''
 数据集：Mnist
@@ -9,7 +9,7 @@
 ------------------------------
 运行结果：
 正确率：80.29%（二分类）
-运行时长：67.88s
+运行时长：78.55s
 '''
 
 from keras.datasets import mnist
@@ -22,11 +22,12 @@ class Perceptron:
     def __init__(self, iteration = 30, learning_rate = 0.001):
         self.iteration = iteration
         self.rate = learning_rate
+
     #定义fit方法，使用训练集完成参数w和b的训练。
-    def fit(self, data, label):
+    def fit(self, train_data, train_label):
         print("开始训练")
-        data = np.mat(data)  #转换为矩阵，后面的运算会更方便。实际上，在转换为矩阵后运算符重载了。
-        label = np.mat(label).T  #将标签矩阵转置
+        data = np.mat(train_data)  #转换为矩阵，后面的运算会更方便。实际上，在转换为矩阵后运算符重载了。
+        label = np.mat(train_label).T  #将标签矩阵转置
         m, n = np.shape(data) #获取数据行列数
         w = np.zeros((1, n)) #初始化w矩阵
         b = 0  #初始化偏置项b
@@ -48,32 +49,36 @@ class Perceptron:
         self.b = b
         print("\n结束训练")
     
-    #定义predict方法，读取测试集，返回预测标签，同时更新预测准确率。
-    def predict(self, data, label):
-        print("开始测试")
-        data = np.mat(data)
-        label = np.mat(label).T
+    #定义predict方法，读取测试集，返回预测标签。
+    def predict(self, test_data):
+        print("开始预测")
+        data = np.mat(test_data)
         m, n = np.shape(data)
-        error = 0  #定义error对预测错误的点进行计数
-        label_res = []  #定义存储预测标签的列表
+        predict_label = []  #定义存储预测标签的列表
         w = self.w  #读取fit后的w和b
         b = self.b
 
         for i in range(m):  #对每一个样本进行检测
             xi = data[i]
-            yi = label[i]
-            result = -1 * yi * (w * xi.T + b)
-            label_res.append(result)
-            if result >= 0:
-                error += 1
+            result = np.sign(w * xi.T + b)
+            predict_label.append(result)
         
-        self.__accuracy = 1 - error / m  #计算准确率
-        print("结束测试")
-        return label_res  #返回预测标签值
+        print("结束预测")
+        
+        predict_label = np.array(predict_label)
+        return predict_label  #返回预测标签值
 
-    #定义score函数返回模型本次测试的准确率
-    def score(self):
-        return self.__accuracy 
+    #定义score函数，返回预测准确率。
+    def score(self, test_data, test_label):
+        predict_label = np.mat(self.predict(test_data)).T
+        test_label = np.mat(test_label).T
+        m, n = np.shape(test_label)
+        error = 0
+        for i in range(m):
+            if (predict_label[i] != test_label[i]):
+                error += 1
+        accuracy = 1 - (error / m)
+        return accuracy
 
 
 if __name__ == '__main__':
@@ -81,16 +86,15 @@ if __name__ == '__main__':
     #由于单层感知机只能处理二分类的情况，所以需要对标签进行二值化。
     (train_data, train_label), (test_data, test_label) = mnist.load_data()
     train_data = np.array([list(chain(*i)) for i in train_data])
-    test_data = np.array([list(chain(*i)) for i in test_data])
     train_label = np.array([1 if i >= 5 else - 1 for i in train_label])
+    test_data = np.array([list(chain(*i)) for i in test_data])
     test_label = np.array([1 if i >= 5 else - 1 for i in test_label])
     
     #对训练和测试过程进行计时
     start = time.time()
     pc = Perceptron(iteration=30, learning_rate=0.001)
     pc.fit(train_data, train_label)
-    pc.predict(test_data, test_label)
+    print("单层感知机预测准确率：%.2f%%" % (pc.score(test_data, test_label)*100))
     end = time.time()
-    print("单层感知机预测准确率：%2f%%" % (round(pc.score(), 4) * 100))
-    print("耗时：%3f s" %(end - start))
+    print("耗时：%.2f s" %(end - start))
 
