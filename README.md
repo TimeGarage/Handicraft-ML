@@ -24,8 +24,9 @@
 | 感知机 (Perceptron)            | [Perceptron.py](./Perceptron/Perceptron.py) | 统计学习方法\|感知机         |  👌   |
 | K近邻 (KNN)                    | [KNN.py](./KNN/KNN.py)                      | 统计学习方法\|K近邻          |  👌   |
 | 朴素贝叶斯 (Naive Bayes)       | [NaiveBayes.py](./NaiveBayes/NaiveBayes.py) | 统计学习方法\|朴素贝叶斯     |  👌   |
-| 决策树 (Decision Tree)         | DecisionTree.py                             | 统计学习方法\|决策树         |      |
+| 决策树 (Decision Tree)         | [DecisionTree.py](./DecisionTree/DecisionTree.py) | 统计学习方法\|决策树         | 👌 |
 | 逻辑回归 (Logistic Regression) | LogisticRegression.py                       | 统计学习方法\|逻辑回归       |      |
+| 最大熵模型 (Maximum Entropy) | MaximumEntropy.py                      | 统计学习方法\|最大熵模型    |      |
 | 支持向量机 (SVM)               | SVM.py                                      | 统计学习方法\|支持向量机     |      |
 | Adaboost                       | Adaboost.py                                 | 统计学习方法\|Adaboost       |      |
 | 最大期望算法 (EM)              | EM.py                                       | 统计学习方法\|最大期望算法   |      |
