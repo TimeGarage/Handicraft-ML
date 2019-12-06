@@ -55,7 +55,7 @@ class NaiveBayes:
         print("结束计算概率")
 
 
-    #基于fit函数计算的先验概率及条件概率对标签进行预测
+    #基于fit函数计算的先验概率及条件概率计算后验概率，对测试样本标签进行预测。
     def predict(self, test_data):
         print("开始预测标签")
         Py = self.Py
@@ -71,10 +71,10 @@ class NaiveBayes:
             x = test_data[i]
             for j in range(class_num): #计算每一个标签对应的概率，并将结果保存在P_check列表中。
                 sum = 0
-                for k in range(feature_num): #对每一个维度出现样本数据的概率求和
+                for k in range(feature_num): #对每一个维度出现样本数据的概率求和（因为是对数所以求和，如果不取对数则应该是相乘。朴素贝叶斯认为每一个特征维度是相互独立的。）
                     sum += Pxy[j][k][x[k]]
                 P_check[j] = Py[j] + sum
-            predict_label.append(P_check.index(max(P_check))) #将预测概率最大的标签值添加到预测标签列表predict_label中
+            predict_label.append(P_check.index(max(P_check))) #将后验概率最大的标签值添加到预测标签列表predict_label中
             print('\r预测进度|%-50s| [%d/%d]' % ('█' * int((i / n) * 50 + 2), i + 1, n), end='') #绘制进度条
         print("\n结束预测")
 
