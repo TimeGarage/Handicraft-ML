@@ -14,7 +14,6 @@
 
 from keras.datasets import mnist
 import numpy as np
-from itertools import chain
 import time
 
 class Perceptron:
@@ -85,9 +84,9 @@ if __name__ == '__main__':
     #对数据进行预处理，将每一个样本的图片数据由28*28的矩阵转换为1*784的矩阵。
     #由于单层感知机只能处理二分类的情况，所以需要对标签进行二值化。
     (train_data, train_label), (test_data, test_label) = mnist.load_data()
-    train_data = np.array([list(chain(*i)) for i in train_data])
+    train_data = np.array([np.array(i).flatten() for i in train_data])
     train_label = np.array([1 if i >= 5 else - 1 for i in train_label])
-    test_data = np.array([list(chain(*i)) for i in test_data])
+    test_data = np.array([np.array(i).flatten() for i in test_data])
     test_label = np.array([1 if i >= 5 else - 1 for i in test_label])
     
     #对训练和测试过程进行计时
