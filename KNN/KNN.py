@@ -19,7 +19,6 @@
 from keras.datasets import mnist
 import numpy as np
 import time
-from itertools import chain
 
 class KNN:
     #定义初始化方法，记录分类器K近邻参数k_neighbor和Lp范数中的参数p。
@@ -72,8 +71,8 @@ class KNN:
 
 if __name__ == '__main__':
     (train_data, train_label), (test_data, test_label) = mnist.load_data()
-    train_data = np.array([list(chain(*i)) for i in train_data]) #将28*28维矩阵转换为1*784的矩阵。
-    test_data = np.array([list(chain(*i)) for i in test_data[:100]]) #对测试集进行切片，选取前100组数据。
+    train_data = np.array([np.array(i).flatten() for i in train_data]) #将28*28维矩阵转换为1*784的矩阵。
+    test_data = np.array([np.array(i).flatten() for i in test_data[:100]]) #对测试集进行切片，选取前100组数据。
     test_label = test_label[:100]
     knn = KNN(k_neighbor=25, p=2) #设置KNN参数，p=2表示使用欧式距离进行度量。
     start = time.time()
