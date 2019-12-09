@@ -7,7 +7,7 @@
 
 **训练集与测试集来源：Mnist**
 
-**Python调用包：Numpy(矩阵运算) + Keras(Mnist数据集) + itertools(Flatten降维) + time(运行计时)**
+**Python调用包：Numpy(矩阵运算) + Keras(Mnist数据集) + time(运行计时)**
 
 **我的博客：[「少数派报告」](http://www.timegarage.works)**
 
