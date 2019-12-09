@@ -15,7 +15,6 @@
 from keras.datasets import mnist
 import numpy as np
 import time
-from itertools import chain
 
 class NaiveBayes:
     #定义构造函数，feature_num为特征数，class_num为标签的所有可能取值。
@@ -48,7 +47,7 @@ class NaiveBayes:
         for i in range(class_num): 
             for j in range(feature_num):
                 for k in range(256):
-                    Pxy[i][j][k] = np.log((xy_count[i][j][k] + 1) / (np.sum(xy_count[i][j]) + 256))
+                    Pxy[i][j][k] = np.log((xy_count[i][j][k] + 1) / (np.sum(xy_count[i][j]) + 256)) #计算条件概率，使用拉普拉斯平滑对计算结果为0的情况进行处理。同时对结果取对数，避免多个接近于0的值相乘导致结果向下溢出。
         
         self.Py = Py
         self.Pxy = Pxy
@@ -96,8 +95,8 @@ class NaiveBayes:
 
 if __name__ == '__main__':
     (train_data, train_label), (test_data, test_label) = mnist.load_data() #加载mnist数据
-    train_data = np.array([list(chain(*i)) for i in train_data])  #将28*28维矩阵转换为1*784的矩阵。
-    test_data = np.array([list(chain(*i)) for i in test_data]) 
+    train_data = np.array([np.array(i).flatten() for i in train_data])  #将28*28维矩阵转换为1*784的矩阵。
+    test_data = np.array([np.array(i).flatten() for i in test_data]) 
     nb = NaiveBayes(feature_num=28 * 28, class_num=10) #初始化NaiveBayes分类器
     start = time.time()
     nb.fit(train_data, train_label) #计算训练集先验概率和条件概率
