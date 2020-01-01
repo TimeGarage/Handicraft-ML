@@ -1,4 +1,4 @@
-# Handicraft-ML
+# 手写机器学习经典算法
 [![HitCount](http://hits.dwyl.io/TimeGarage/TimeGarage/Handicraft-ML.svg)](http://hits.dwyl.io/TimeGarage/TimeGarage/Handicraft-ML)&ensp; ![stars](https://img.shields.io/github/stars/TimeGarage/Handicraft-ML?color=yellow&style=flat-square)&ensp; ![forks](https://img.shields.io/github/forks/TimeGarage/Handicraft-ML?style=flat-square)&ensp; ![issues](https://img.shields.io/github/issues/TimeGarage/Handicraft-ML?color=red&style=flat-square)&ensp; ![license](https://img.shields.io/github/license/TimeGarage/Handicraft-ML?style=flat-square)
 
 ### 项目简介
