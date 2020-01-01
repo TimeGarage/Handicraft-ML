@@ -1,4 +1,6 @@
 # Handicraft-ML
+[![HitCount](http://hits.dwyl.io/TimeGarage/TimeGarage/Handicraft-ML.svg)](http://hits.dwyl.io/TimeGarage/TimeGarage/Handicraft-ML)&ensp; ![stars](https://img.shields.io/github/stars/TimeGarage/Handicraft-ML?color=yellow&style=flat-square)&ensp; ![forks](https://img.shields.io/github/forks/TimeGarage/Handicraft-ML?style=flat-square)&ensp; ![issues](https://img.shields.io/github/issues/TimeGarage/Handicraft-ML?color=red&style=flat-square)&ensp; ![license](https://img.shields.io/github/license/TimeGarage/Handicraft-ML?style=flat-square)
+
 ### 前言
 
 为了加深对机器学习经典算法的理解，自己使用Python3语言手写实现了一遍机器学习的经典算法。同时，针对每一种算法，在博客中总结相应的心得体会，希望能对学习者有所帮助。
@@ -8,8 +10,6 @@
 **训练集与测试集来源：Mnist**
 
 **Python调用包：Numpy(矩阵运算) + Keras(Mnist数据集) + time(运行计时)**
-
-**我的博客：[「少数派报告」](http://www.timegarage.works)**
 
 
 
@@ -36,14 +36,17 @@
 
 ### 联系
 
-👏欢迎大家提issue
+个人博客：[「少数派报告」](https://www.timegarage.works)
 
-**微信：DalePeng （备注：github + 学校/单位 + 姓名）**
+Email：82610725@163.com
 
-**邮箱：dustinpeng@pku.edu.cn**
+WeChat：DalePeng
+
+<img src="./images4md/QR.png" alt="img" width="150px" />
 
 
 
 ### 致谢
 
 本项目灵感来自于[WenDesi](https://github.com/WenDesi)、[Dodo](https://github.com/Dod-o)
+
